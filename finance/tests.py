@@ -61,7 +61,7 @@ class FinanceTests(APITestCase):
     def test_add_txn(self):
         request = self.factory.post(
             "/txns/",
-            {"borrower": 1, "amount": 12000.00, "reason": "Buying a new car"},
+            {"borrower": 2, "amount": 12000.00, "reason": "Buying a new car"},
             format="json",
         )
         force_authenticate(request, user=self.user)
