@@ -32,4 +32,12 @@ def add_txn(request):
 
 @api_view(["PATCH", "PUT"])
 def update_txn(request):
-    return Response({"result": {}, "message": "Not implemented yet!"})
+    txn_id = request.data.get("txn_id", None)
+    try:
+        txn = Transaction.objects.get(lender=request.user.id, id=txn_id)
+        txn.paid_back = True
+        txn.save()
+    except ModuleNotFoundError:
+        return Response({"Error": "Transaction does not exist!"})
+
+    return Response({"result": {}, "message": "Money lend marked as paid!"})
