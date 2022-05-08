@@ -9,6 +9,7 @@ from django.contrib.auth.models import (
 from django.utils.translation import ugettext_lazy as __
 from accounts.conf import UserType
 
+
 class UserManager(BaseUserManager):
     """
     manager for user model
@@ -31,6 +32,7 @@ class UserManager(BaseUserManager):
         user.user_type = UserType.ADMINUSER
         user.save(using=self._db)
         return user
+
 
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):

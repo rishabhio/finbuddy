@@ -77,11 +77,10 @@ WSGI_APPLICATION = "finbuddy.wsgi.application"
 # REST FRAMEWORK SETTINGS
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        # "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_RENDERER_CLASSES": ("rishabhio.core.renderers.ApiRenderer",),
-    "EXCEPTION_HANDLER": "rishabhio.core.exceptions.api_exception_handler",
 }
 RESTAPI_DEFAULT_PAGE_SIZE = 10
 
@@ -94,7 +93,7 @@ APPLICATION_NAME = "rishabhio"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": "db.sqlite3",
     }
 }
 
