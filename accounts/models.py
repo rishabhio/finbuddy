@@ -51,6 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(__("Updated at"), auto_now=True)
 
     objects = UserManager()
+
     USERNAME_FIELD = "email"
 
     def __str__(self):
@@ -61,3 +62,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.first_name
+
+    def save(self, *args, **kwargs):
+        self.set_password(self.password)
+        super(User, self).save(*args, **kwargs)
